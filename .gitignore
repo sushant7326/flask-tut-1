@@ -1,0 +1,22 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+env/
+venv/
+*.venv
+ENV/
+
+# Environment Variables
+.env
+
+# Flask
+instance/
+.webassets-cache
+
+# IDE Specifice Files
+.vscode/
+
+# Logs
+*.log
