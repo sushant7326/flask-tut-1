@@ -7,7 +7,7 @@ def index():
 
 @app.route("/about")
 def about():
-    return "<h1 style='color:red'>True art is an EXPLOSION!!!</h1>"
+    return render_template("public/about.html")
 
 @app.route("/another")
 def another():

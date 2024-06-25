@@ -7,7 +7,7 @@ def admin_dasboard():
 
 @app.route("/admin/profile")
 def admin_profile():
-    return "<h1 style='color:red'>Deidara: True art is an EXPLOSION!!!</h1>"
+    return render_template("admin/profile.html")
 
 @app.route("/admin/another")
 def admin_another():
