@@ -89,6 +89,31 @@ def sign_up():
 
     return render_template("public/sign_up.html")
 
-@app.route("/another")
-def another():
-    return "<h1 style='color:blue'>I dont know I forgot more dialogues!!!</h1>"
+users = {
+    "mitsuhiko": {
+        "name": "Ayush Raj",
+        "bio": "ML Engineer",
+        "linkedin": "@daadhiwala"
+    },
+    "gvanrossum": {
+        "name": "Aryan Sinha",
+        "bio": "Electronics Engineer",
+        "linkedin": "@as"
+    },
+    "elonmusk": {
+        "name": "Sushant Singh",
+        "bio": "Software Engineer",
+        "linkedin": "@sushibouy"
+    }
+}
+
+@app.route("/profile/<username>")
+def profile(username):
+    user = None
+    if username in users:
+        user = users[username]
+    return render_template("public/profile.html", username=username, user=user)
+
+@app.route("/multiple/<foo>/<bar>/<baz>")
+def multi(foo, bar, baz):
+    return f"foo is {foo}, bar is {bar}, baz is {baz}"
