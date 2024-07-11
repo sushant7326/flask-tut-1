@@ -120,6 +120,12 @@
       <hr />
       <p>{{ suspicious }}</p>
       <!-- <p>{{ suspicious|safe }}</p> -->
+       
+      <h4>Macros</h4>
+      <hr>
+      {{ im.input(label="Your name", name="name", id="id", placeholder="Please enter your name") }}
+      {{ im.input(label="Your age", type="number", id="id", placeholder="Please enter your age") }}
+      {{ im.input(label="Password", type="password", name="password", id="password", placeholder="Please enter your password") }}
     </div>
   </div>
 </div>
