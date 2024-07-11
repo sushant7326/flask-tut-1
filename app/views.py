@@ -118,17 +118,27 @@ def profile(username):
 def multi(foo, bar, baz):
     return f"foo is {foo}, bar is {bar}, baz is {baz}"
 
-@app.route("/json", methods=["POST"])
+@app.route("/json", methods=["GET","POST"])
 def json():
-    if request.is_json:
-        req = request.get_json()
-        response = {
-            "message": "JSON recieved!",
-            "name": req.get("name")
-        }
-        res = make_response(jsonify(response), 200)
-        return res
-
+    # for POST request
+    if request.method=="POST":
+        # if POST request sent as JSON
+        if request.is_json:
+            # get the entire POST request as json
+            req = request.get_json()
+            # create a variable for the response return
+            response = {
+                "message": "JSON recieved!",
+                # get the name from the POST request to return it
+                "name": req.get("name")
+            }
+            # JSONify the response variable and return it with the status code
+            res = make_response(jsonify(response), 200)
+            return res
+        # if POST request not sent as JSON
+        else:
+            res = make_response(jsonify({"message": "No JSON recieved!"}), 400)
+            return res 
+    # for GET request (default: this is what works when URL is put in the browser)
     else:
-        res = make_response(jsonify({"message": "No JSON recieved!"}), 400)
-        return res    
+        return "Phuck auph"
