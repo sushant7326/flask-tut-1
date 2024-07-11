@@ -142,3 +142,32 @@ def json():
     # for GET request (default: this is what works when URL is put in the browser)
     else:
         return "Phuck auph"
+    
+@app.route("/guestbook")
+def guestbook():
+    return render_template("public/guestbook.html")
+
+@app.route("/guestbook/create-entry", methods=["POST"])
+def create_entry():
+    if request.is_json:
+        req = request.get_json()
+        print(req)
+        res = make_response(req, 200)
+        return res
+    else:
+        res = make_response(jsonify({"message": "No JSON recieved!"}), 400)
+        return res
+    
+# Query Strings
+@app.route("/query")
+def query():
+    # if request.args:
+    #     args = request.args
+    #     serialized = ", ".join(f"{k}: {v}" for k,v in args.items())
+    #     return f"(Query) {serialized}", 200
+
+    # return "Query recieved!", 200
+
+    print(request.query_string)
+
+    return "No query string", 200
