@@ -1,0 +1,127 @@
+{% extends "public/templates/public_template.html" %}
+
+{% import "macros/input_macros.html" as im %}
+
+{% block title %}Jinja{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Jinja Templates</h1>
+      <hr />
+
+      <h4>Variables</h4>
+      <hr />
+      <p>Name: {{ my_name }}</p>
+
+      <h4>Looping</h4>
+      <hr />
+      <ul>
+        {% for lang in langs %}
+        <li>{{ lang }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4>Looping with index</h4>
+      <hr />
+      <ul>
+        {% for lang in langs %}
+        <li>{{ loop.index0}}: {{ lang }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4>Looping a dictionary</h4>
+      <hr />
+      <ul>
+        {% for k,v in friends.items() %}
+        <li>{{ k }}: {{ v }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4>Looping a dictionary keys</h4>
+      <hr />
+      <ul>
+        {% for k in friends.keys() %}
+        <li>{{ k }}</li>
+        {% endfor %}
+      </ul>
+
+      <h4>Access list member</h4>
+      <hr />
+      <p>{{ langs[0] }}</p>
+
+      <h4>Access dictionary member</h4>
+      <hr />
+      <p>{{ friends["DW"] }}</p>
+
+      <h4>Access class attribute</h4>
+      <hr />
+      <p>{{ my_remote.name }}</p>
+
+      <h4>Unpack variables</h4>
+      <hr />
+      {% set a, b = colors %}
+      <p>{{ a }}</p>
+      <p>{{ b }}</p>
+
+      <h4>Call a Function</h4>
+      <hr />
+      <p>{{ repeat("Flask is kinda great! ",10) }}</p>
+
+      <h4>Call a class method</h4>
+      <hr />
+      <p>{{ my_remote.pull() }}</p>
+      <p>{{ my_remote.clone() }}</p>
+
+      <h4>Conditionals</h4>
+      <hr />
+      {% if cool %}
+      <p>Cool is {{ cool }}</p>
+      {% endif %}
+
+      <h4>Comparisons</h4>
+      <hr />
+      {% if age < 18 %}
+      <p>No entry</p>
+      {% elif age < 26%}
+      <p>Nearly old enough</p>
+      {% else %}
+      <p>You may enter</p>
+      {% endif %}
+
+      <h4>Maths</h4>
+      <hr />
+      <p>{{ age/2 }}</p>
+
+      <h4>Template Filters</h4>
+      <hr />
+      <p>{{ colors|length }}</p>
+      <p>{{ friends|length }}</p>
+      <p>{{ my_name|reverse }}</p>
+      <p>{{ my_name|upper }}</p>
+
+      <h4>Template Filters - join</h4>
+      <hr />
+      <p>{{ langs|join(", ") }}</p>
+      <p>{{ langs|join("~ ") }}</p>
+      <p>{{ langs }}</p>
+
+      <h4>Custom Filters</h4>
+      <hr />
+      <p>{{ date|clean_date }}</p>
+
+      <h4>Escaping</h4>
+      <hr />
+      <p>{{ my_html }}</p>
+      <p>{{ my_html|safe }}</p>
+
+      <h4>Suspicious</h4>
+      <hr />
+      <p>{{ suspicious }}</p>
+      <!-- <p>{{ suspicious|safe }}</p> -->
+    </div>
+  </div>
+</div>
+
+{% endblock %}
